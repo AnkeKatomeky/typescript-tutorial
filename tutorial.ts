@@ -125,3 +125,54 @@ class MyInvoice {
         return `${this.client} owes ${this.amount} for ${this.details}`;
     }
 }
+
+//generics
+function keksAppender<T>(object: T) {
+    let id = Math.floor(Math.random() * 10000);
+    return { ...object, id };
+}
+let doc1 = keksAppender<personType>(personone);
+console.log(doc1);
+
+interface IInterface<T> {
+    id: number,
+    name: string,
+    data: T
+}
+
+class GenericClass<T> implements IInterface<T>{
+    constructor(public id: number, public name: string, public data: T) {
+
+    }
+}
+
+let doc2 = new GenericClass<string>(1, "genName", "keks");
+console.log(doc2);
+let doc3 = new GenericClass<number[]>(1, "genName", [1, 2, 3, 4, 5]);
+console.log(doc3);
+
+//enums
+enum ResourceType {
+    Book, //0
+    Film, //1
+    Food  //2 and so on
+}
+
+interface IEnumed {
+    type: ResourceType;
+    name: string;
+}
+
+let doc4: IEnumed = {
+    type: ResourceType.Book,
+    name: "Clean Code"
+}
+let doc5: IEnumed = {
+    type: ResourceType.Food,
+    name: "Shaurma"
+}
+
+//Tupels
+function tupleReturn(): [string, number]{
+    return ["keks", 10];
+}
