@@ -39,10 +39,13 @@ function createDocument() {
         return;
     }
     let document;
-    if (typeInput.value === "invoice") {
+    let documentType = DocumentType[typeInput.value];
+    console.log(typeInput.value);
+    console.log(documentType);
+    if (documentType === DocumentType.payment) {
         document = new Invoice(findedFromClient, detailInput.value, amountInput.valueAsNumber);
     }
-    else if (typeInput.value === "payment") {
+    else if (documentType === DocumentType.invoice) {
         document = new Payment(findedToClient, detailInput.value, amountInput.valueAsNumber);
     }
     else {
@@ -55,3 +58,8 @@ function generateGuidQuickly() {
     return Math.random().toString(36).substring(2, 15) +
         Math.random().toString(36).substring(2, 15);
 }
+var DocumentType;
+(function (DocumentType) {
+    DocumentType[DocumentType["payment"] = 0] = "payment";
+    DocumentType[DocumentType["invoice"] = 1] = "invoice";
+})(DocumentType || (DocumentType = {}));
