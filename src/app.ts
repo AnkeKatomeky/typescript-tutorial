@@ -1,18 +1,16 @@
-import { Client } from "./Client.js";
-import { Invoice } from "./Invoice.js";
-import { IPerson } from "./IPerson.js";
-import { IToString } from "./IToString.js";
-import { ListTemplate } from "./ListTemplate.js";
-import { Payment } from "./Payment.js";
+import { Client } from "./Client";
+import { Invoice } from "./Invoice";
+import { IToString } from "./IToString";
+import { ListTemplate } from "./ListTemplate";
+import { Payment } from "./Payment";
 
-
-const form = document.querySelector('.new-item-form') as HTMLFormElement;
-const typeInput = document.querySelector('#type') as HTMLSelectElement;
-const fromInput = document.querySelector('#from') as HTMLSelectElement;
-const toInput = document.querySelector('#to') as HTMLSelectElement;
-const detailInput = document.querySelector('#details') as HTMLInputElement;
-const amountInput = document.querySelector('#amount') as HTMLInputElement;
-const documentList = document.querySelector('#documentList') as HTMLUListElement;
+const form = document.querySelector(".new-item-form") as HTMLFormElement;
+const typeInput = document.querySelector("#type") as HTMLSelectElement;
+const fromInput = document.querySelector("#from") as HTMLSelectElement;
+const toInput = document.querySelector("#to") as HTMLSelectElement;
+const detailInput = document.querySelector("#details") as HTMLInputElement;
+const amountInput = document.querySelector("#amount") as HTMLInputElement;
+const documentList = document.querySelector("#documentList") as HTMLUListElement;
 const template = new ListTemplate(documentList);
 
 let clients: Client[] = [];
@@ -31,7 +29,7 @@ clients.forEach((q: Client) => {
 
 let documents: IToString[] = [];
 
-form.addEventListener('submit', (e: Event) => {
+form.addEventListener("submit", (e: Event) => {
     e.preventDefault();
     createDocument();
 });
@@ -48,7 +46,7 @@ function createDocument() {
         return;
     }
     let document: IToString;
-    let documentType : DocumentType = (<any>DocumentType)[typeInput.value];
+    let documentType: DocumentType = (<any>DocumentType)[typeInput.value];
     console.log(typeInput.value);
     console.log(documentType);
 
@@ -62,7 +60,7 @@ function createDocument() {
         throw new Error("Unnkown document type");
     }
     documents.push(document);
-    template.Render(document, typeInput.value, 'end');
+    template.Render(document, typeInput.value, "end");
 }
 
 function generateGuidQuickly() {
@@ -70,7 +68,7 @@ function generateGuidQuickly() {
         Math.random().toString(36).substring(2, 15);
 }
 
-enum DocumentType{
+enum DocumentType {
     payment,
     invoice
 }

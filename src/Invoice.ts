@@ -3,8 +3,8 @@ import { IToString } from "./IToString";
 
 export class Invoice implements IToString {
     constructor(public Recipient: IPerson,
-                public Description: string,
-                public Amount: number) {
+        public Description: string,
+        public Amount: number) {
     }
 
     ToString() {
