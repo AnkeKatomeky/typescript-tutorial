@@ -1,3 +1,3 @@
-export interface IToString{
+export interface IToString {
     ToString(): string;
 }

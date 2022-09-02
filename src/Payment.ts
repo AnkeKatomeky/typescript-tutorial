@@ -7,7 +7,6 @@ export class Payment implements IToString {
         public Amount: number) {
     }
 
-
     ToString() {
         return `${this.Client.Name} owes ${this.Amount} for ${this.Description}`;
     }

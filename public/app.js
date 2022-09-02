@@ -1,65 +1,105 @@
-import { Client } from "./Client.js";
-import { Invoice } from "./Invoice.js";
-import { ListTemplate } from "./ListTemplate.js";
-import { Payment } from "./Payment.js";
-const form = document.querySelector('.new-item-form');
-const typeInput = document.querySelector('#type');
-const fromInput = document.querySelector('#from');
-const toInput = document.querySelector('#to');
-const detailInput = document.querySelector('#details');
-const amountInput = document.querySelector('#amount');
-const documentList = document.querySelector('#documentList');
-const template = new ListTemplate(documentList);
-let clients = [];
-let jain = new Client(generateGuidQuickly(), "Jain", 30, 1000);
-let josh = new Client(generateGuidQuickly(), "Josh", 26, 8000);
-let denis = new Client(generateGuidQuickly(), "Denis", 62, 500);
-let macDuck = new Client(generateGuidQuickly(), "MacDuck", 62, 60000);
-clients.push(jain, josh, denis, macDuck);
-clients.forEach((q) => {
-    let optionFrom = new Option(q.Name, q.Guid);
-    let optionTo = new Option(q.Name, q.Guid);
-    fromInput.options.add(optionFrom);
-    toInput.options.add(optionTo);
-});
-let documents = [];
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    createDocument();
-});
-function createDocument() {
-    let findedFromClient = clients.find((client) => {
-        return client.Guid == fromInput.value;
-    });
-    let findedToClient = clients.find((client) => {
-        return client.Guid == toInput.value;
-    });
-    if (findedFromClient === findedToClient) {
-        console.log("error: clients are the same");
-        return;
-    }
-    let document;
-    let documentType = DocumentType[typeInput.value];
-    console.log(typeInput.value);
-    console.log(documentType);
-    if (documentType === DocumentType.payment) {
-        document = new Invoice(findedFromClient, detailInput.value, amountInput.valueAsNumber);
-    }
-    else if (documentType === DocumentType.invoice) {
-        document = new Payment(findedToClient, detailInput.value, amountInput.valueAsNumber);
-    }
-    else {
-        throw new Error("Unnkown document type");
-    }
-    documents.push(document);
-    template.Render(document, typeInput.value, 'end');
-}
-function generateGuidQuickly() {
-    return Math.random().toString(36).substring(2, 15) +
-        Math.random().toString(36).substring(2, 15);
-}
-var DocumentType;
-(function (DocumentType) {
-    DocumentType[DocumentType["payment"] = 0] = "payment";
-    DocumentType[DocumentType["invoice"] = 1] = "invoice";
-})(DocumentType || (DocumentType = {}));
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ([
+/* 0 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);\n/* harmony import */ var _Invoice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);\n/* harmony import */ var _ListTemplate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);\n/* harmony import */ var _Payment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);\n\r\n\r\n\r\n\r\nconst form = document.querySelector(\".new-item-form\");\r\nconst typeInput = document.querySelector(\"#type\");\r\nconst fromInput = document.querySelector(\"#from\");\r\nconst toInput = document.querySelector(\"#to\");\r\nconst detailInput = document.querySelector(\"#details\");\r\nconst amountInput = document.querySelector(\"#amount\");\r\nconst documentList = document.querySelector(\"#documentList\");\r\nconst template = new _ListTemplate__WEBPACK_IMPORTED_MODULE_2__.ListTemplate(documentList);\r\nlet clients = [];\r\nlet jain = new _Client__WEBPACK_IMPORTED_MODULE_0__.Client(generateGuidQuickly(), \"Jain\", 30, 1000);\r\nlet josh = new _Client__WEBPACK_IMPORTED_MODULE_0__.Client(generateGuidQuickly(), \"Josh\", 26, 8000);\r\nlet denis = new _Client__WEBPACK_IMPORTED_MODULE_0__.Client(generateGuidQuickly(), \"Denis\", 62, 500);\r\nlet macDuck = new _Client__WEBPACK_IMPORTED_MODULE_0__.Client(generateGuidQuickly(), \"MacDuck\", 62, 60000);\r\nclients.push(jain, josh, denis, macDuck);\r\nclients.forEach((q) => {\r\n    let optionFrom = new Option(q.Name, q.Guid);\r\n    let optionTo = new Option(q.Name, q.Guid);\r\n    fromInput.options.add(optionFrom);\r\n    toInput.options.add(optionTo);\r\n});\r\nlet documents = [];\r\nlet obj = {};\r\nobj.Speek();\r\nform.addEventListener(\"submit\", (e) => {\r\n    e.preventDefault();\r\n    createDocument();\r\n});\r\nfunction createDocument() {\r\n    let findedFromClient = clients.find((client) => {\r\n        return client.Guid == fromInput.value;\r\n    });\r\n    let findedToClient = clients.find((client) => {\r\n        return client.Guid == toInput.value;\r\n    });\r\n    if (findedFromClient === findedToClient) {\r\n        console.log(\"error: clients are the same\");\r\n        return;\r\n    }\r\n    let document;\r\n    let documentType = DocumentType[typeInput.value];\r\n    console.log(typeInput.value);\r\n    console.log(documentType);\r\n    if (documentType === DocumentType.payment) {\r\n        document = new _Invoice__WEBPACK_IMPORTED_MODULE_1__.Invoice(findedFromClient, detailInput.value, amountInput.valueAsNumber);\r\n    }\r\n    else if (documentType === DocumentType.invoice) {\r\n        document = new _Payment__WEBPACK_IMPORTED_MODULE_3__.Payment(findedToClient, detailInput.value, amountInput.valueAsNumber);\r\n    }\r\n    else {\r\n        throw new Error(\"Unnkown document type\");\r\n    }\r\n    documents.push(document);\r\n    template.Render(document, typeInput.value, \"end\");\r\n}\r\nfunction generateGuidQuickly() {\r\n    return Math.random().toString(36).substring(2, 15) +\r\n        Math.random().toString(36).substring(2, 15);\r\n}\r\nvar DocumentType;\r\n(function (DocumentType) {\r\n    DocumentType[DocumentType[\"payment\"] = 0] = \"payment\";\r\n    DocumentType[DocumentType[\"invoice\"] = 1] = \"invoice\";\r\n})(DocumentType || (DocumentType = {}));\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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LENBQUMsQ0FBQztBQUNwRCxDQUFDO0FBRUQsSUFBSyxZQUdKO0FBSEQsV0FBSyxZQUFZO0lBQ2IscURBQU87SUFDUCxxREFBTztBQUNYLENBQUMsRUFISSxZQUFZLEtBQVosWUFBWSxRQUdoQiIsInNvdXJjZXMiOlsid2VicGFjazovL3R5cGVzY3JpcHQtdHV0b3JpYWwvLi9zcmMvYXBwLnRzPzA2NmUiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ2xpZW50IH0gZnJvbSBcIi4vQ2xpZW50XCI7XHJcbmltcG9ydCB7IEludm9pY2UgfSBmcm9tIFwiLi9JbnZvaWNlXCI7XHJcbmltcG9ydCB7IElUb1N0cmluZyB9IGZyb20gXCIuL0lUb1N0cmluZ1wiO1xyXG5pbXBvcnQgeyBMaXN0VGVtcGxhdGUgfSBmcm9tIFwiLi9MaXN0VGVtcGxhdGVcIjtcclxuaW1wb3J0IHsgUGF5bWVudCB9IGZyb20gXCIuL1BheW1lbnRcIjtcclxuXHJcbmNvbnN0IGZvcm0gPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLm5ldy1pdGVtLWZvcm1cIikgYXMgSFRNTEZvcm1FbGVtZW50O1xyXG5jb25zdCB0eXBlSW5wdXQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiI3R5cGVcIikgYXMgSFRNTFNlbGVjdEVsZW1lbnQ7XHJcbmNvbnN0IGZyb21JbnB1dCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIjZnJvbVwiKSBhcyBIVE1MU2VsZWN0RWxlbWVudDtcclxuY29uc3QgdG9JbnB1dCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIjdG9cIikgYXMgSFRNTFNlbGVjdEVsZW1lbnQ7XHJcbmNvbnN0IGRldGFpbElucHV0ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIiNkZXRhaWxzXCIpIGFzIEhUTUxJbnB1dEVsZW1lbnQ7XHJcbmNvbnN0IGFtb3VudElucHV0ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIiNhbW91bnRcIikgYXMgSFRNTElucHV0RWxlbWVudDtcclxuY29uc3QgZG9jdW1lbnRMaXN0ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIiNkb2N1bWVudExpc3RcIikgYXMgSFRNTFVMaXN0RWxlbWVudDtcclxuY29uc3QgdGVtcGxhdGUgPSBuZXcgTGlzdFRlbXBsYXRlKGRvY3VtZW50TGlzdCk7XHJcblxyXG5sZXQgY2xpZW50czogQ2xpZW50W10gPSBbXTtcclxubGV0IGphaW4gPSBuZXcgQ2xpZW50KGdlbmVyYXRlR3VpZFF1aWNrbHkoKSwgXCJKYWluXCIsIDMwLCAxMDAwKTtcclxubGV0IGpvc2ggPSBuZXcgQ2xpZW50KGdlbmVyYXRlR3VpZFF1aWNrbHkoKSwgXCJKb3NoXCIsIDI2LCA4MDAwKTtcclxubGV0IGRlbmlzID0gbmV3IENsaWVudChnZW5lcmF0ZUd1aWRRdWlja2x5KCksIFwiRGVuaXNcIiwgNjIsIDUwMCk7XHJcbmxldCBtYWNEdWNrID0gbmV3IENsaWVudChnZW5lcmF0ZUd1aWRRdWlja2x5KCksIFwiTWFjRHVja1wiLCA2MiwgNjAwMDApO1xyXG5jbGllbnRzLnB1c2goamFpbiwgam9zaCwgZGVuaXMsIG1hY0R1Y2spO1xyXG5cclxuY2xpZW50cy5mb3JFYWNoKChxOiBDbGllbnQpID0+IHtcclxuICAgIGxldCBvcHRpb25Gcm9tID0gbmV3IE9wdGlvbihxLk5hbWUsIHEuR3VpZCk7XHJcbiAgICBsZXQgb3B0aW9uVG8gPSBuZXcgT3B0aW9uKHEuTmFtZSwgcS5HdWlkKTtcclxuICAgIGZyb21JbnB1dC5vcHRpb25zLmFkZChvcHRpb25Gcm9tKTtcclxuICAgIHRvSW5wdXQub3B0aW9ucy5hZGQob3B0aW9uVG8pO1xyXG59KTtcclxuXHJcbmxldCBkb2N1bWVudHM6IElUb1N0cmluZ1tdID0gW107XHJcblxyXG5sZXQgb2JqOiBhbnkgPSB7fVxyXG5vYmouU3BlZWsoKTtcclxuXHJcbmZvcm0uYWRkRXZlbnRMaXN0ZW5lcihcInN1Ym1pdFwiLCAoZTogRXZlbnQpID0+IHtcclxuICAgIGUucHJldmVudERlZmF1bHQoKTtcclxuICAgIGNyZWF0ZURvY3VtZW50KCk7XHJcbn0pO1xyXG5cclxuZnVuY3Rpb24gY3JlYXRlRG9jdW1lbnQoKSB7XHJcbiAgICBsZXQgZmluZGVkRnJvbUNsaWVudCA9IGNsaWVudHMuZmluZCgoY2xpZW50KSA9PiB7XHJcbiAgICAgICAgcmV0dXJuIGNsaWVudC5HdWlkID09IGZyb21JbnB1dC52YWx1ZTtcclxuICAgIH0pITtcclxuICAgIGxldCBmaW5kZWRUb0NsaWVudCA9IGNsaWVudHMuZmluZCgoY2xpZW50KSA9PiB7XHJcbiAgICAgICAgcmV0dXJuIGNsaWVudC5HdWlkID09IHRvSW5wdXQudmFsdWU7XHJcbiAgICB9KSE7XHJcbiAgICBpZiAoZmluZGVkRnJvbUNsaWVudCA9PT0gZmluZGVkVG9DbGllbnQpIHtcclxuICAgICAgICBjb25zb2xlLmxvZyhcImVycm9yOiBjbGllbnRzIGFyZSB0aGUgc2FtZVwiKTtcclxuICAgICAgICByZXR1cm47XHJcbiAgICB9XHJcbiAgICBsZXQgZG9jdW1lbnQ6IElUb1N0cmluZztcclxuICAgIGxldCBkb2N1bWVudFR5cGU6IERvY3VtZW50VHlwZSA9ICg8YW55PkRvY3VtZW50VHlwZSlbdHlwZUlucHV0LnZhbHVlXTtcclxuICAgIGNvbnNvbGUubG9nKHR5cGVJbnB1dC52YWx1ZSk7XHJcbiAgICBjb25zb2xlLmxvZyhkb2N1bWVudFR5cGUpO1xyXG5cclxuICAgIGlmIChkb2N1bWVudFR5cGUgPT09IERvY3VtZW50VHlwZS5wYXltZW50KSB7XHJcbiAgICAgICAgZG9jdW1lbnQgPSBuZXcgSW52b2ljZShmaW5kZWRGcm9tQ2xpZW50LCBkZXRhaWxJbnB1dC52YWx1ZSwgYW1vdW50SW5wdXQudmFsdWVBc051bWJlcik7XHJcbiAgICB9XHJcbiAgICBlbHNlIGlmIChkb2N1bWVudFR5cGUgPT09IERvY3VtZW50VHlwZS5pbnZvaWNlKSB7XHJcbiAgICAgICAgZG9jdW1lbnQgPSBuZXcgUGF5bWVudChmaW5kZWRUb0NsaWVudCwgZGV0YWlsSW5wdXQudmFsdWUsIGFtb3VudElucHV0LnZhbHVlQXNOdW1iZXIpO1xyXG4gICAgfVxyXG4gICAgZWxzZSB7XHJcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKFwiVW5ua293biBkb2N1bWVudCB0eXBlXCIpO1xyXG4gICAgfVxyXG4gICAgZG9jdW1lbnRzLnB1c2goZG9jdW1lbnQpO1xyXG4gICAgdGVtcGxhdGUuUmVuZGVyKGRvY3VtZW50LCB0eXBlSW5wdXQudmFsdWUsIFwiZW5kXCIpO1xyXG59XHJcblxyXG5mdW5jdGlvbiBnZW5lcmF0ZUd1aWRRdWlja2x5KCkge1xyXG4gICAgcmV0dXJuIE1hdGgucmFuZG9tKCkudG9TdHJpbmcoMzYpLnN1YnN0cmluZygyLCAxNSkgK1xyXG4gICAgICAgIE1hdGgucmFuZG9tKCkudG9TdHJpbmcoMzYpLnN1YnN0cmluZygyLCAxNSk7XHJcbn1cclxuXHJcbmVudW0gRG9jdW1lbnRUeXBlIHtcclxuICAgIHBheW1lbnQsXHJcbiAgICBpbnZvaWNlXHJcbn0iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///0\n");
+
+/***/ }),
+/* 1 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Client\": () => (/* binding */ Client)\n/* harmony export */ });\nclass Client {\r\n    constructor(guid, name, age, value) {\r\n        this.Value = value;\r\n        this.Name = name;\r\n        this.Age = age;\r\n        this.Guid = guid;\r\n    }\r\n    GetValue() {\r\n        return this.Value;\r\n    }\r\n    Spend(value) {\r\n        if (this.Value < value) {\r\n            throw new Error(\"Not enough money\");\r\n        }\r\n        this.Value -= value;\r\n    }\r\n    Gain(value) {\r\n        this.Value += value;\r\n    }\r\n    TrySpend(value) {\r\n        try {\r\n            this.Spend(value);\r\n            return [true, null];\r\n        }\r\n        catch (error) {\r\n            return [false, error.message];\r\n        }\r\n    }\r\n    Speak(phrase) {\r\n        console.log(`${this.Name} says \\\"${phrase}\\\"`);\r\n    }\r\n}\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMS5qcyIsIm1hcHBpbmdzIjoiOzs7O0FBR08sTUFBTSxNQUFNO0lBNkJmLFlBQVksSUFBWSxFQUFFLElBQVksRUFBRSxHQUFXLEVBQUUsS0FBYTtRQUM5RCxJQUFJLENBQUMsS0FBSyxHQUFHLEtBQUssQ0FBQztRQUNuQixJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQztRQUNqQixJQUFJLENBQUMsR0FBRyxHQUFHLEdBQUcsQ0FBQztRQUNmLElBQUksQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDO0lBQ3JCLENBQUM7SUEvQkQsUUFBUTtRQUNKLE9BQU8sSUFBSSxDQUFDLEtBQUssQ0FBQztJQUN0QixDQUFDO0lBQ0QsS0FBSyxDQUFDLEtBQWE7UUFDZixJQUFJLElBQUksQ0FBQyxLQUFLLEdBQUcsS0FBSyxFQUFFO1lBQ3BCLE1BQU0sSUFBSSxLQUFLLENBQUMsa0JBQWtCLENBQUMsQ0FBQztTQUN2QztRQUNELElBQUksQ0FBQyxLQUFLLElBQUksS0FBSyxDQUFDO0lBQ3hCLENBQUM7SUFDRCxJQUFJLENBQUMsS0FBYTtRQUNkLElBQUksQ0FBQyxLQUFLLElBQUksS0FBSyxDQUFDO0lBQ3hCLENBQUM7SUFDRCxRQUFRLENBQUMsS0FBYTtRQUNsQixJQUFJO1lBQ0EsSUFBSSxDQUFDLEtBQUssQ0FBQyxLQUFLLENBQUMsQ0FBQztZQUNsQixPQUFPLENBQUMsSUFBSSxFQUFFLElBQUksQ0FBQyxDQUFDO1NBQ3ZCO1FBQUMsT0FBTyxLQUFLLEVBQUU7WUFDWixPQUFPLENBQUMsS0FBSyxFQUFHLEtBQWUsQ0FBQyxPQUFPLENBQUMsQ0FBQztTQUM1QztJQUNMLENBQUM7SUFHRCxLQUFLLENBQUMsTUFBYztRQUNoQixPQUFPLENBQUMsR0FBRyxDQUFDLEdBQUcsSUFBSSxDQUFDLElBQUksV0FBVyxNQUFNLElBQUksQ0FBQyxDQUFDO0lBQ25ELENBQUM7Q0FRSiIsInNvdXJjZXMiOlsid2VicGFjazovL3R5cGVzY3JpcHQtdHV0b3JpYWwvLi9zcmMvQ2xpZW50LnRzPzA2ODYiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSVBlcnNvbiB9IGZyb20gXCIuL0lQZXJzb25cIjtcclxuaW1wb3J0IHsgSVZhbGxldCB9IGZyb20gXCIuL0lWYWxsZXRcIjtcclxuXHJcbmV4cG9ydCBjbGFzcyBDbGllbnQgaW1wbGVtZW50cyBJUGVyc29uLCBJVmFsbGV0IHtcclxuICAgIEd1aWQ6IHN0cmluZztcclxuICAgIFZhbHVlOiBudW1iZXI7XHJcbiAgICBHZXRWYWx1ZSgpOiBudW1iZXIge1xyXG4gICAgICAgIHJldHVybiB0aGlzLlZhbHVlO1xyXG4gICAgfVxyXG4gICAgU3BlbmQodmFsdWU6IG51bWJlcik6IHZvaWQge1xyXG4gICAgICAgIGlmICh0aGlzLlZhbHVlIDwgdmFsdWUpIHtcclxuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKFwiTm90IGVub3VnaCBtb25leVwiKTtcclxuICAgICAgICB9XHJcbiAgICAgICAgdGhpcy5WYWx1ZSAtPSB2YWx1ZTtcclxuICAgIH1cclxuICAgIEdhaW4odmFsdWU6IG51bWJlcik6IHZvaWQge1xyXG4gICAgICAgIHRoaXMuVmFsdWUgKz0gdmFsdWU7XHJcbiAgICB9XHJcbiAgICBUcnlTcGVuZCh2YWx1ZTogbnVtYmVyKTogW2Jvb2xlYW4sIHN0cmluZyB8IG51bGxdIHtcclxuICAgICAgICB0cnkge1xyXG4gICAgICAgICAgICB0aGlzLlNwZW5kKHZhbHVlKTtcclxuICAgICAgICAgICAgcmV0dXJuIFt0cnVlLCBudWxsXTtcclxuICAgICAgICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgICAgICAgICByZXR1cm4gW2ZhbHNlLCAoZXJyb3IgYXMgRXJyb3IpLm1lc3NhZ2VdO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuICAgIE5hbWU6IHN0cmluZztcclxuICAgIEFnZTogbnVtYmVyO1xyXG4gICAgU3BlYWsocGhyYXNlOiBzdHJpbmcpOiB2b2lkIHtcclxuICAgICAgICBjb25zb2xlLmxvZyhgJHt0aGlzLk5hbWV9IHNheXMgXFxcIiR7cGhyYXNlfVxcXCJgKTtcclxuICAgIH1cclxuXHJcbiAgICBjb25zdHJ1Y3RvcihndWlkOiBzdHJpbmcsIG5hbWU6IHN0cmluZywgYWdlOiBudW1iZXIsIHZhbHVlOiBudW1iZXIpIHtcclxuICAgICAgICB0aGlzLlZhbHVlID0gdmFsdWU7XHJcbiAgICAgICAgdGhpcy5OYW1lID0gbmFtZTtcclxuICAgICAgICB0aGlzLkFnZSA9IGFnZTtcclxuICAgICAgICB0aGlzLkd1aWQgPSBndWlkO1xyXG4gICAgfVxyXG59XHJcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///1\n");
+
+/***/ }),
+/* 2 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Invoice\": () => (/* binding */ Invoice)\n/* harmony export */ });\nclass Invoice {\r\n    constructor(Recipient, Description, Amount) {\r\n        this.Recipient = Recipient;\r\n        this.Description = Description;\r\n        this.Amount = Amount;\r\n    }\r\n    ToString() {\r\n        return `${this.Recipient.Name} is owed ${this.Amount} for ${this.Description}`;\r\n    }\r\n}\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMi5qcyIsIm1hcHBpbmdzIjoiOzs7O0FBR08sTUFBTSxPQUFPO0lBQ2hCLFlBQW1CLFNBQWtCLEVBQzFCLFdBQW1CLEVBQ25CLE1BQWM7UUFGTixjQUFTLEdBQVQsU0FBUyxDQUFTO1FBQzFCLGdCQUFXLEdBQVgsV0FBVyxDQUFRO1FBQ25CLFdBQU0sR0FBTixNQUFNLENBQVE7SUFDekIsQ0FBQztJQUVELFFBQVE7UUFDSixPQUFPLEdBQUcsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLFlBQVksSUFBSSxDQUFDLE1BQU0sUUFBUSxJQUFJLENBQUMsV0FBVyxFQUFFLENBQUM7SUFDbkYsQ0FBQztDQUNKIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vdHlwZXNjcmlwdC10dXRvcmlhbC8uL3NyYy9JbnZvaWNlLnRzPzJlODEiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSVBlcnNvbiB9IGZyb20gXCIuL0lQZXJzb25cIjtcclxuaW1wb3J0IHsgSVRvU3RyaW5nIH0gZnJvbSBcIi4vSVRvU3RyaW5nXCI7XHJcblxyXG5leHBvcnQgY2xhc3MgSW52b2ljZSBpbXBsZW1lbnRzIElUb1N0cmluZyB7XHJcbiAgICBjb25zdHJ1Y3RvcihwdWJsaWMgUmVjaXBpZW50OiBJUGVyc29uLFxyXG4gICAgICAgIHB1YmxpYyBEZXNjcmlwdGlvbjogc3RyaW5nLFxyXG4gICAgICAgIHB1YmxpYyBBbW91bnQ6IG51bWJlcikge1xyXG4gICAgfVxyXG5cclxuICAgIFRvU3RyaW5nKCkge1xyXG4gICAgICAgIHJldHVybiBgJHt0aGlzLlJlY2lwaWVudC5OYW1lfSBpcyBvd2VkICR7dGhpcy5BbW91bnR9IGZvciAke3RoaXMuRGVzY3JpcHRpb259YDtcclxuICAgIH1cclxufSJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///2\n");
+
+/***/ }),
+/* 3 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ListTemplate\": () => (/* binding */ ListTemplate)\n/* harmony export */ });\nclass ListTemplate {\r\n    constructor(container) {\r\n        this.container = container;\r\n    }\r\n    Render(documentEntity, heading, positon) {\r\n        const li = document.createElement(\"li\");\r\n        const h4 = document.createElement(\"h4\");\r\n        h4.innerHTML = heading;\r\n        li.append(h4);\r\n        const p = document.createElement(\"p\");\r\n        p.innerText = documentEntity.ToString();\r\n        li.append(p);\r\n        if (positon === \"start\") {\r\n            this.container.prepend(li);\r\n        }\r\n        else {\r\n            this.container.append(li);\r\n        }\r\n    }\r\n}\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMy5qcyIsIm1hcHBpbmdzIjoiOzs7O0FBRU8sTUFBTSxZQUFZO0lBQ3JCLFlBQW9CLFNBQTJCO1FBQTNCLGNBQVMsR0FBVCxTQUFTLENBQWtCO0lBRS9DLENBQUM7SUFFRCxNQUFNLENBQUMsY0FBeUIsRUFBRSxPQUFlLEVBQUUsT0FBd0I7UUFDdkUsTUFBTSxFQUFFLEdBQUcsUUFBUSxDQUFDLGFBQWEsQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUV4QyxNQUFNLEVBQUUsR0FBRyxRQUFRLENBQUMsYUFBYSxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQ3hDLEVBQUUsQ0FBQyxTQUFTLEdBQUcsT0FBTyxDQUFDO1FBQ3ZCLEVBQUUsQ0FBQyxNQUFNLENBQUMsRUFBRSxDQUFDLENBQUM7UUFFZCxNQUFNLENBQUMsR0FBRyxRQUFRLENBQUMsYUFBYSxDQUFDLEdBQUcsQ0FBQyxDQUFDO1FBQ3RDLENBQUMsQ0FBQyxTQUFTLEdBQUcsY0FBYyxDQUFDLFFBQVEsRUFBRSxDQUFDO1FBQ3hDLEVBQUUsQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUM7UUFFYixJQUFJLE9BQU8sS0FBSyxPQUFPLEVBQUU7WUFDckIsSUFBSSxDQUFDLFNBQVMsQ0FBQyxPQUFPLENBQUMsRUFBRSxDQUFDLENBQUM7U0FDOUI7YUFDSTtZQUNELElBQUksQ0FBQyxTQUFTLENBQUMsTUFBTSxDQUFDLEVBQUUsQ0FBQyxDQUFDO1NBQzdCO0lBQ0wsQ0FBQztDQUNKIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vdHlwZXNjcmlwdC10dXRvcmlhbC8uL3NyYy9MaXN0VGVtcGxhdGUudHM/NGFhNSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJVG9TdHJpbmcgfSBmcm9tIFwiLi9JVG9TdHJpbmdcIjtcclxuXHJcbmV4cG9ydCBjbGFzcyBMaXN0VGVtcGxhdGUge1xyXG4gICAgY29uc3RydWN0b3IocHJpdmF0ZSBjb250YWluZXI6IEhUTUxVTGlzdEVsZW1lbnQpIHtcclxuXHJcbiAgICB9XHJcblxyXG4gICAgUmVuZGVyKGRvY3VtZW50RW50aXR5OiBJVG9TdHJpbmcsIGhlYWRpbmc6IHN0cmluZywgcG9zaXRvbjogXCJzdGFydFwiIHwgXCJlbmRcIikge1xyXG4gICAgICAgIGNvbnN0IGxpID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImxpXCIpO1xyXG5cclxuICAgICAgICBjb25zdCBoNCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJoNFwiKTtcclxuICAgICAgICBoNC5pbm5lckhUTUwgPSBoZWFkaW5nO1xyXG4gICAgICAgIGxpLmFwcGVuZChoNCk7XHJcblxyXG4gICAgICAgIGNvbnN0IHAgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicFwiKTtcclxuICAgICAgICBwLmlubmVyVGV4dCA9IGRvY3VtZW50RW50aXR5LlRvU3RyaW5nKCk7XHJcbiAgICAgICAgbGkuYXBwZW5kKHApO1xyXG5cclxuICAgICAgICBpZiAocG9zaXRvbiA9PT0gXCJzdGFydFwiKSB7XHJcbiAgICAgICAgICAgIHRoaXMuY29udGFpbmVyLnByZXBlbmQobGkpO1xyXG4gICAgICAgIH1cclxuICAgICAgICBlbHNlIHtcclxuICAgICAgICAgICAgdGhpcy5jb250YWluZXIuYXBwZW5kKGxpKTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcbn0iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///3\n");
+
+/***/ }),
+/* 4 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Payment\": () => (/* binding */ Payment)\n/* harmony export */ });\nclass Payment {\r\n    constructor(Client, Description, Amount) {\r\n        this.Client = Client;\r\n        this.Description = Description;\r\n        this.Amount = Amount;\r\n    }\r\n    ToString() {\r\n        return `${this.Client.Name} owes ${this.Amount} for ${this.Description}`;\r\n    }\r\n}\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsIm1hcHBpbmdzIjoiOzs7O0FBR08sTUFBTSxPQUFPO0lBQ2hCLFlBQW1CLE1BQWUsRUFDdkIsV0FBbUIsRUFDbkIsTUFBYztRQUZOLFdBQU0sR0FBTixNQUFNLENBQVM7UUFDdkIsZ0JBQVcsR0FBWCxXQUFXLENBQVE7UUFDbkIsV0FBTSxHQUFOLE1BQU0sQ0FBUTtJQUN6QixDQUFDO0lBRUQsUUFBUTtRQUNKLE9BQU8sR0FBRyxJQUFJLENBQUMsTUFBTSxDQUFDLElBQUksU0FBUyxJQUFJLENBQUMsTUFBTSxRQUFRLElBQUksQ0FBQyxXQUFXLEVBQUUsQ0FBQztJQUM3RSxDQUFDO0NBQ0oiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly90eXBlc2NyaXB0LXR1dG9yaWFsLy4vc3JjL1BheW1lbnQudHM/NTBmNCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJUGVyc29uIH0gZnJvbSBcIi4vSVBlcnNvblwiO1xyXG5pbXBvcnQgeyBJVG9TdHJpbmcgfSBmcm9tIFwiLi9JVG9TdHJpbmdcIjtcclxuXHJcbmV4cG9ydCBjbGFzcyBQYXltZW50IGltcGxlbWVudHMgSVRvU3RyaW5nIHtcclxuICAgIGNvbnN0cnVjdG9yKHB1YmxpYyBDbGllbnQ6IElQZXJzb24sXHJcbiAgICAgICAgcHVibGljIERlc2NyaXB0aW9uOiBzdHJpbmcsXHJcbiAgICAgICAgcHVibGljIEFtb3VudDogbnVtYmVyKSB7XHJcbiAgICB9XHJcblxyXG4gICAgVG9TdHJpbmcoKSB7XHJcbiAgICAgICAgcmV0dXJuIGAke3RoaXMuQ2xpZW50Lk5hbWV9IG93ZXMgJHt0aGlzLkFtb3VudH0gZm9yICR7dGhpcy5EZXNjcmlwdGlvbn1gO1xyXG4gICAgfVxyXG59Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///4\n");
+
+/***/ })
+/******/ 	]);
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__(0);
+/******/ 	
+/******/ })()
+;

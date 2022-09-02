@@ -1,7 +1,6 @@
 import { IPerson } from "./IPerson";
 import { IVallet } from "./IVallet";
 
-
 export class Client implements IPerson, IVallet {
     Guid: string;
     Value: number;
